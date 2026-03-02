@@ -1,15 +1,20 @@
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const { clearCart } = useCart();
   const [form, setForm] = useState({
     name: "",
     email: "",
     address: "",
   });
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    clearCart();
     alert("Order placed successfully!");
+     navigate("/");
   };
 
   return (
